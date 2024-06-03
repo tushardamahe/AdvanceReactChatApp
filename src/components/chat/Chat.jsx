@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
+import { useUserStore } from "../../lib/userStore";
 
 const Chat = () => {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
 
   const endRef = useRef(null);
+
+  const { currentUser } = useUserStore();
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -22,7 +25,7 @@ const Chat = () => {
         <div className="user">
           <img src="./avatar.png" alt="" />
           <div className="texts">
-            <span>Frost</span>
+            <span>{currentUser.username}</span>
             <p>Web Developer</p>
           </div>
         </div>
