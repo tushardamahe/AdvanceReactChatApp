@@ -1,8 +1,8 @@
+import { auth } from "../../lib/firebase";
 import { useUserStore } from "../../lib/userStore";
 import "./detail.css";
 
 const Detail = () => {
-
   const { currentUser } = useUserStore();
   return (
     <div className="detail">
@@ -59,7 +59,9 @@ const Detail = () => {
           </div>
         </div>
         <button>Block User</button>
-        <button className="logout">LogOut</button>
+        <button className="logout" onClick={() => auth.signOut()}>
+          LogOut
+        </button>
       </div>
     </div>
   );
