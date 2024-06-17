@@ -7,8 +7,8 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 
 const ChatList = () => {
+  const [chats, setChats] = useState([]);
   const [addMode, setAddmode] = useState(false);
-  const [chats, setChats] = useState("");
 
   const { currentUser } = useUserStore();
 
@@ -19,7 +19,7 @@ const ChatList = () => {
         const items = res.data().chats;
 
         const promises = items.map(async (item) => {
-          const userDocRef = doc(db, "users", item.receierId);
+          const userDocRef = doc(db, "users", item.receiverId);
           const userDocSnap = await getDoc(userDocRef);
 
           const user = userDocSnap.data();
