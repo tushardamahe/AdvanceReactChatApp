@@ -22,7 +22,7 @@ const Chat = () => {
     const unSub = onSnapshot(
       doc(db, "chats", "xPHTEQQ5UFZX5OU3SEiZ"),
       (res) => {
-        setChat(res.data);
+        setChat(res.data());
       }
     );
 
