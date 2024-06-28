@@ -62,7 +62,7 @@ const ChatList = () => {
         <div
           className="item"
           key={chat.chatId}
-          onClick={() => handleSelect(chat.chatId)}
+          onClick={() => handleSelect(chat)}
         >
           <img src={chat.user.avatar || "./avatar.png"} alt="" />
           <div className="texts">

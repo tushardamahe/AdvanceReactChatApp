@@ -9,6 +9,14 @@ export const useChatStore = create((set) => ({
   changeChat: (chatId, user) => {
     const currentUser = useUserStore.getState().currentUser;
 
+    if (!user) {
+      console.error(`User object is undefined for chatId: ${chatId}`);
+    }
+
+    if (!currentUser) {
+      console.error("Current user is undefined");
+    }
+
     if (user.blocked.includes(currentUser.id)) {
       return set({
         chatId,
