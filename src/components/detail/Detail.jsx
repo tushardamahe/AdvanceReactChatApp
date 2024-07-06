@@ -37,8 +37,8 @@ const Detail = () => {
   return (
     <div className="detail">
       <div className="user">
-        <img src="./avatar.png" alt="" />
-        <h2>{currentUser.username}</h2>
+        <img src={user?.avatar || "./avatar.png"} alt="" />
+        <h2>{user?.username}</h2>
         <p>Web Developer</p>
       </div>
       <div className="info">
@@ -88,7 +88,13 @@ const Detail = () => {
             <img src="./arrowUp.png" alt="" />
           </div>
         </div>
-        <button>Block User</button>
+        <button onClick={handleBlock}>
+          {isCurrentUserBlocked
+            ? "You are Blocked!"
+            : isReceiverBlocked
+            ? "User Blocked"
+            : "Block User"}
+        </button>
         <button className="logout" onClick={() => auth.signOut()}>
           LogOut
         </button>
