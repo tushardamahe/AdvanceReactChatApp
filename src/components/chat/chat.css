@@ -143,6 +143,10 @@
       &:disabled {
         cursor: not-allowed;
       }
+
+      &::placeholder {
+        color: white;
+      }
     }
 
     .emoji {

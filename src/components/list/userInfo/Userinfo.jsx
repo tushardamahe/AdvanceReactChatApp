@@ -7,7 +7,7 @@ const Userinfo = () => {
     <div className="userInfo">
       <div className="user">
         <img src={currentUser.avatar || "./avatar.png"} alt="" />
-        <h6>{currentUser.username}</h6>
+        <h3>{currentUser.username}</h3>
       </div>
       <div className="icons">
         <img src="./more.png" alt="" />

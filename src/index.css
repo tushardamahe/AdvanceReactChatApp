@@ -12,7 +12,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: white;
+  color: black;
 }
 
 .container {
@@ -36,13 +36,8 @@ body {
   width: 5px;
 }
 
-::-webkit-scrollbar-track {
-  background: #d1e5ff;
-  border-radius: 16px;
-}
-
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#642bff, #ff22e6);
+  background: linear-gradient(grey, black);
   border-radius: 16px;
 }
 

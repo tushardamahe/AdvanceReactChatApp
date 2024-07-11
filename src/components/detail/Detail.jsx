@@ -3,8 +3,16 @@ import { useChatStore } from "../../lib/chatStore";
 import { auth, db } from "../../lib/firebase";
 import { useUserStore } from "../../lib/userStore";
 import "./detail.css";
+import { useState } from "react";
 
 const Detail = () => {
+  const [iconStates, setIconStates] = useState({
+    chatSettings: false,
+    privacyHelp: false,
+    sharedPhotos: false,
+    sharedFiles: false,
+  });
+
   const {
     chatId,
     user,
@@ -30,6 +38,13 @@ const Detail = () => {
     }
   };
 
+  const toggleIconState = (iconName) => {
+    setIconStates((prev) => ({
+      ...prev,
+      [iconName]: !prev[iconName],
+    }));
+  };
+
   const handleLogout = () => {
     auth.signOut();
     resetChat();
@@ -45,19 +60,35 @@ const Detail = () => {
         <div className="option">
           <div className="title">
             <span>Chat Settings</span>
-            <img src="./arrowUp.png" alt="" />
+            <img
+              src={
+                iconStates.chatSettings ? "./arrowUp.png" : "./arrowDown.png"
+              }
+              alt=""
+              onClick={() => toggleIconState("chatSettings")}
+            />
           </div>
         </div>
         <div className="option">
           <div className="title">
             <span>Privacy & Help</span>
-            <img src="./arrowUp.png" alt="" />
+            <img
+              src={iconStates.privacyHelp ? "./arrowUp.png" : "./arrowDown.png"}
+              alt=""
+              onClick={() => toggleIconState("privacyHelp")}
+            />
           </div>
         </div>
         <div className="option">
           <div className="title">
             <span>Shared Photos</span>
-            <img src="./arrowDown.png" alt="" />
+            <img
+              src={
+                iconStates.sharedPhotos ? "./arrowUp.png" : "./arrowDown.png"
+              }
+              alt=""
+              onClick={() => toggleIconState("sharedPhotos")}
+            />
           </div>
           <div className="photos">
             <div className="photoItem">
@@ -85,7 +116,11 @@ const Detail = () => {
         <div className="option">
           <div className="title">
             <span>Shared Files</span>
-            <img src="./arrowUp.png" alt="" />
+            <img
+              src={iconStates.sharedFiles ? "./arrowUp.png" : "./arrowDown.png"}
+              alt=""
+              onClick={() => toggleIconState("sharedFiles")}
+            />
           </div>
         </div>
         <button onClick={handleBlock}>
