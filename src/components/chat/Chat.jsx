@@ -64,11 +64,11 @@ const Chat = () => {
   const handleSend = async () => {
     if (text === "") return;
 
-    let imgURL = null;
+    let imgUrl = null;
 
     try {
       if (img.file) {
-        imgURL = await upload(img.file);
+        imgUrl = await upload(img.file);
       }
 
       await updateDoc(doc(db, "chats", chatId), {
@@ -76,7 +76,7 @@ const Chat = () => {
           senderId: currentUser.id,
           text,
           createdAt: new Date(),
-          ...(imgURL && { img: imgURL }),
+          ...(imgUrl && { img: imgUrl }),
         }),
       });
 
@@ -105,14 +105,14 @@ const Chat = () => {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setImg({
+        file: null,
+        url: "",
+      });
+
+      setText("");
     }
-
-    setImg({
-      file: null,
-      url: "",
-    });
-
-    setText("");
   };
 
   return (
@@ -139,8 +139,8 @@ const Chat = () => {
             }
             key={message?.createdAt}
           >
-            {message.img && <img src="./avatar.png" alt="" />}
             <div className="texts">
+              {message.img && <img src={message.img} alt="" />}
               <p>{message.text}</p>
               {/* <span>{message}</span> */}
             </div>
