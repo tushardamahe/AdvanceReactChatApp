@@ -7,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1px;
-    border-bottom: 1px solid #dddddd35;
+    border-bottom: 1px solid #00000035;
 
     img {
       width: 100px;
@@ -64,7 +64,7 @@
 
             span {
               font-size: 14px;
-              color: lightgray;
+              color: rgb(0, 0, 0);
               font-weight: 300;
             }
           }
